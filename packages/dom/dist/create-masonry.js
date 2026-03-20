@@ -1,7 +1,7 @@
 import { createEventBus, createInstrumentation, createScheduler, resolveConfig, shortestColumnLayout, } from "@tw-masonry/core";
-import { applyCssColumns, applyJsLayout, clearItemPositionStyles } from "./apply.js";
+import { applyCssColumns, applyJsLayout, clearItemPositionStyles, } from "./apply.js";
 import { getItems, measureItems, readCssLayoutVars } from "./measure.js";
-import { createImageWatcher, createMutationWatcher, createResizeWatcher } from "./observers.js";
+import { createImageWatcher, createMutationWatcher, createResizeWatcher, } from "./observers.js";
 import { resolveStrategy } from "./strategy-resolver.js";
 function mergeConfig(current, partial) {
     const next = {
@@ -79,7 +79,11 @@ export function createMasonry(container, partialConfig = {}) {
         scheduler.request(() => {
             const nowStrategy = resolveStrategy(config);
             if (nowStrategy !== strategy) {
-                eventBus.emit({ type: "strategyChange", from: strategy, to: nowStrategy });
+                eventBus.emit({
+                    type: "strategyChange",
+                    from: strategy,
+                    to: nowStrategy,
+                });
                 strategy = nowStrategy;
             }
             if (reason === undefined) {
@@ -97,7 +101,9 @@ export function createMasonry(container, partialConfig = {}) {
                     eventBus.emit({ type: "layoutEnd", durationMs: 0, placed: 0 });
                     return;
                 }
-                if (strategy === "css-columns" || strategy === "css-grid-dense" || strategy === "native-masonry") {
+                if (strategy === "css-columns" ||
+                    strategy === "css-grid-dense" ||
+                    strategy === "native-masonry") {
                     const vars = readCssLayoutVars(container, config);
                     clearItemPositionStyles(items);
                     applyCssColumns(container, items, vars.columns, vars.gap);
@@ -116,7 +122,11 @@ export function createMasonry(container, partialConfig = {}) {
                     const width = container.clientWidth || container.getBoundingClientRect().width;
                     const availableWidth = Math.max(1, width - vars.gap * (vars.columns - 1));
                     const columnWidth = Math.max(1, availableWidth / vars.columns);
-                    const layoutResult = shortestColumnLayout(measuredItems.map((item) => ({ index: item.index, width: columnWidth, height: item.height })), {
+                    const layoutResult = shortestColumnLayout(measuredItems.map((item) => ({
+                        index: item.index,
+                        width: columnWidth,
+                        height: item.height,
+                    })), {
                         columns: vars.columns,
                         gap: vars.gap,
                         columnWidth,

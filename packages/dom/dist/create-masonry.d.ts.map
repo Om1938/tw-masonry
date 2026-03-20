@@ -1,1 +1,1 @@
-{"version":3,"file":"create-masonry.d.ts","sourceRoot":"","sources":["../src/create-masonry.ts"],"names":[],"mappings":"AAAA,OAAO,EAML,KAAK,aAAa,EAClB,KAAK,iBAAiB,EAEvB,MAAM,kBAAkB,CAAC;AAwC1B,wBAAgB,aAAa,CAAC,SAAS,EAAE,WAAW,EAAE,aAAa,GAAE,OAAO,CAAC,aAAa,CAAM,GAAG,iBAAiB,CAkKnH"}
+{"version":3,"file":"create-masonry.d.ts","sourceRoot":"","sources":["../src/create-masonry.ts"],"names":[],"mappings":"AAAA,OAAO,EAML,KAAK,aAAa,EAClB,KAAK,iBAAiB,EAEvB,MAAM,kBAAkB,CAAC;AAsD1B,wBAAgB,aAAa,CAC3B,SAAS,EAAE,WAAW,EACtB,aAAa,GAAE,OAAO,CAAC,aAAa,CAAM,GACzC,iBAAiB,CA0LnB"}

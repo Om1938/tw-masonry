@@ -258,14 +258,18 @@ function mergeConfig(current, partial) {
   return (0, import_core.resolveConfig)(next);
 }
 function toElementArray(items) {
-  return Array.from(items).filter((item) => item instanceof HTMLElement);
+  return Array.from(items).filter(
+    (item) => item instanceof HTMLElement
+  );
 }
 function createMasonry(container, partialConfig = {}) {
   let config = (0, import_core.resolveConfig)(partialConfig);
   let strategy = resolveStrategy(config);
   const eventBus = (0, import_core.createEventBus)();
   const scheduler = (0, import_core.createScheduler)();
-  const instrumentation = (0, import_core.createInstrumentation)(config.instrumentation?.markPerformance ?? false);
+  const instrumentation = (0, import_core.createInstrumentation)(
+    config.instrumentation?.markPerformance ?? false
+  );
   let resizeHandle = null;
   let imageHandle = null;
   let mutationHandle = null;
@@ -275,7 +279,10 @@ function createMasonry(container, partialConfig = {}) {
     mutationHandle?.refresh(items);
   };
   const setupObservers = () => {
-    const items = getItems(container, config.itemSelector ?? "[data-masonry-item]");
+    const items = getItems(
+      container,
+      config.itemSelector ?? "[data-masonry-item]"
+    );
     if (config.observeResize) {
       resizeHandle = createResizeWatcher(container, items, (item) => {
         if (item) {
@@ -307,7 +314,11 @@ function createMasonry(container, partialConfig = {}) {
     scheduler.request(() => {
       const nowStrategy = resolveStrategy(config);
       if (nowStrategy !== strategy) {
-        eventBus.emit({ type: "strategyChange", from: strategy, to: nowStrategy });
+        eventBus.emit({
+          type: "strategyChange",
+          from: strategy,
+          to: nowStrategy
+        });
         strategy = nowStrategy;
       }
       if (reason === void 0) {
@@ -341,10 +352,17 @@ function createMasonry(container, partialConfig = {}) {
           const measuredItems = measureItems(container, selector);
           const vars = readCssLayoutVars(container, config);
           const width = container.clientWidth || container.getBoundingClientRect().width;
-          const availableWidth = Math.max(1, width - vars.gap * (vars.columns - 1));
+          const availableWidth = Math.max(
+            1,
+            width - vars.gap * (vars.columns - 1)
+          );
           const columnWidth = Math.max(1, availableWidth / vars.columns);
           const layoutResult = (0, import_core.shortestColumnLayout)(
-            measuredItems.map((item) => ({ index: item.index, width: columnWidth, height: item.height })),
+            measuredItems.map((item) => ({
+              index: item.index,
+              width: columnWidth,
+              height: item.height
+            })),
             {
               columns: vars.columns,
               gap: vars.gap,
@@ -395,7 +413,10 @@ function createMasonry(container, partialConfig = {}) {
     destroy() {
       scheduler.cancel();
       teardownObservers();
-      const items = getItems(container, config.itemSelector ?? "[data-masonry-item]");
+      const items = getItems(
+        container,
+        config.itemSelector ?? "[data-masonry-item]"
+      );
       clearItemPositionStyles(items);
       container.style.height = "";
       container.style.columnCount = "";
