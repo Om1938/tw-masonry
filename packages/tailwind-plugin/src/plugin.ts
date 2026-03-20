@@ -74,8 +74,10 @@ function buildPlugin(
       },
     );
 
-    // Native CSS masonry via @supports progressive enhancement
-    addUtilities({
+    // Native CSS masonry via @supports progressive enhancement.
+    // Using addBase so Tailwind v4 (which restricts addUtilities to class-only
+    // selectors) doesn't reject the @supports at-rule wrapper.
+    addBase({
       "@supports (grid-template-rows: masonry)": {
         ".masonry-native": {
           display: "grid",

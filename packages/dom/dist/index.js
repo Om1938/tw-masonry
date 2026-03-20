@@ -328,11 +328,16 @@ function createMasonry(container, partialConfig = {}) {
           );
           const columnWidth = Math.max(1, availableWidth / vars.columns);
           const layoutResult = shortestColumnLayout(
-            measuredItems.map((item) => ({
-              index: item.index,
-              width: columnWidth,
-              height: item.height
-            })),
+            measuredItems.map((item) => {
+              const rawSpan = item.element.dataset["masonrySpan"];
+              const span = rawSpan ? Math.max(1, parseInt(rawSpan, 10) || 1) : 1;
+              return {
+                index: item.index,
+                width: columnWidth,
+                height: item.height,
+                span
+              };
+            }),
             {
               columns: vars.columns,
               gap: vars.gap,

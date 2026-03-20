@@ -64,6 +64,8 @@ export interface ItemRect {
   index: number;
   width: number;
   height: number;
+  /** Number of columns this item spans (default: 1) */
+  span?: number;
 }
 
 export interface LayoutItem {
@@ -73,6 +75,7 @@ export interface LayoutItem {
   width: number;
   height: number;
   column: number;
+  span: number;
 }
 
 export interface LayoutResult {

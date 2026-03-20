@@ -49,7 +49,7 @@ function buildPlugin(options = {}) {
         type: ["length", "number", "percentage"]
       }
     );
-    addUtilities({
+    addBase({
       "@supports (grid-template-rows: masonry)": {
         ".masonry-native": {
           display: "grid",

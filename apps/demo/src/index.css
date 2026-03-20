@@ -1,0 +1,7 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+/* Smooth masonry item transitions handled by the library config */
+.masonry-item > * {
+  height: 100%;
+}

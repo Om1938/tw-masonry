@@ -53,17 +53,23 @@ describe("masonryPlugin", () => {
     });
   });
 
-  it("registers .masonry-item and @supports utilities", () => {
+  it("registers .masonry-item utility and @supports via addBase", () => {
     const api = makeMockApi();
     masonry().handler(api);
 
-    const calls = vi.mocked(api.addUtilities).mock.calls;
-    // .masonry-item
-    expect(calls[0]?.[0]).toMatchObject({
+    // .masonry-item via addUtilities
+    const utilityCalls = vi.mocked(api.addUtilities).mock.calls;
+    expect(utilityCalls[0]?.[0]).toMatchObject({
       ".masonry-item": { "break-inside": "avoid" },
     });
-    // @supports block
-    expect(calls[1]?.[0]).toMatchObject({
+
+    // @supports block via addBase (Tailwind v4 requires at-rules in addBase)
+    const baseCalls = vi.mocked(api.addBase).mock.calls;
+    const supportsCall = baseCalls.find((c) =>
+      Object.keys(c[0] as object).some((k) => k.startsWith("@supports")),
+    );
+    expect(supportsCall).toBeDefined();
+    expect(supportsCall?.[0]).toMatchObject({
       "@supports (grid-template-rows: masonry)": {
         ".masonry-native": expect.objectContaining({
           display: "grid",

@@ -63,6 +63,8 @@ interface ItemRect {
     index: number;
     width: number;
     height: number;
+    /** Number of columns this item spans (default: 1) */
+    span?: number;
 }
 interface LayoutItem {
     index: number;
@@ -71,6 +73,7 @@ interface LayoutItem {
     width: number;
     height: number;
     column: number;
+    span: number;
 }
 interface LayoutResult {
     items: LayoutItem[];

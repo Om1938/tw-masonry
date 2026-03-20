@@ -14,14 +14,34 @@ describe("shortestColumnLayout", () => {
     );
 
     expect(result.items).toEqual([
-      { index: 0, x: 0, y: 0, width: 100, height: 100, column: 0 },
-      { index: 1, x: 110, y: 0, width: 100, height: 200, column: 1 },
-      { index: 2, x: 0, y: 110, width: 100, height: 80, column: 0 },
-      { index: 3, x: 0, y: 200, width: 100, height: 120, column: 0 },
+      { index: 0, x: 0, y: 0, width: 100, height: 100, column: 0, span: 1 },
+      { index: 1, x: 110, y: 0, width: 100, height: 200, column: 1, span: 1 },
+      { index: 2, x: 0, y: 110, width: 100, height: 80, column: 0, span: 1 },
+      { index: 3, x: 0, y: 200, width: 100, height: 120, column: 0, span: 1 },
     ]);
 
     expect(result.containerHeight).toBe(320);
     expect(result.columns).toBe(2);
     expect(result.gap).toBe(10);
+  });
+
+  it("spans an item across multiple columns", () => {
+    const result = shortestColumnLayout(
+      [
+        { index: 0, width: 100, height: 50 },
+        { index: 1, width: 100, height: 50 },
+        { index: 2, width: 100, height: 80, span: 2 }, // should span both columns
+        { index: 3, width: 100, height: 40 },
+      ],
+      { columns: 2, gap: 10, columnWidth: 100 },
+    );
+
+    const spanner = result.items[2]!;
+    expect(spanner.span).toBe(2);
+    // width = 2 * 100 + 1 * 10 = 210
+    expect(spanner.width).toBe(210);
+    // both columns are at height 60 (50 + 10 gap) so spanner starts at y=60
+    expect(spanner.y).toBe(60);
+    expect(spanner.x).toBe(0);
   });
 });

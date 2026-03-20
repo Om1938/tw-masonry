@@ -11,7 +11,7 @@ const defaultConfig: Required<
   order: "dom",
   maxColumns: 12,
   gapPx: 16,
-  itemSelector: "[data-masonry-item]",
+  itemSelector: ".masonry-item",
   observeResize: true,
   observeMutations: false,
   relayoutOnImages: true,
