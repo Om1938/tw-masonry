@@ -5,3 +5,7 @@
 .masonry-item > * {
   height: 100%;
 }
+
+.masonry-item {
+  will-change: transform;
+}

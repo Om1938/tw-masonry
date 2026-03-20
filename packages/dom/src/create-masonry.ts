@@ -67,6 +67,7 @@ export function createMasonry(
 ): MasonryController {
   let config = resolveConfig(partialConfig);
   let strategy = resolveStrategy(config);
+  const getItemSelector = (): string => config.itemSelector ?? ".masonry-item";
   const eventBus = createEventBus<MasonryEvent>();
   const scheduler = createScheduler();
   const instrumentation = createInstrumentation(
@@ -84,10 +85,7 @@ export function createMasonry(
   };
 
   const setupObservers = (): void => {
-    const items = getItems(
-      container,
-      config.itemSelector ?? "[data-masonry-item]",
-    );
+    const items = getItems(container, getItemSelector());
 
     if (config.observeResize) {
       resizeHandle = createResizeWatcher(container, items, (item) => {
@@ -140,7 +138,7 @@ export function createMasonry(
       const startedAt = performance.now();
 
       try {
-        const selector = config.itemSelector ?? "[data-masonry-item]";
+        const selector = getItemSelector();
         const items = getItems(container, selector);
         if (items.length === 0) {
           container.style.height = "";
@@ -244,10 +242,7 @@ export function createMasonry(
       scheduler.cancel();
       teardownObservers();
 
-      const items = getItems(
-        container,
-        config.itemSelector ?? "[data-masonry-item]",
-      );
+      const items = getItems(container, getItemSelector());
       clearItemPositionStyles(items);
       container.style.height = "";
       container.style.columnCount = "";
