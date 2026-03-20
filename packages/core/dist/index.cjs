@@ -189,7 +189,9 @@ function getAlgorithm(name) {
 
 // src/scheduler.ts
 var raf = globalThis.requestAnimationFrame ? (callback) => globalThis.requestAnimationFrame(() => callback()) : (callback) => globalThis.setTimeout(callback, 16);
-var caf = globalThis.cancelAnimationFrame ? (handle) => globalThis.cancelAnimationFrame(handle) : (handle) => globalThis.clearTimeout(handle);
+var caf = globalThis.cancelAnimationFrame ? (handle) => globalThis.cancelAnimationFrame(handle) : (handle) => globalThis.clearTimeout(
+  handle
+);
 function createScheduler() {
   let frameId = null;
   let queuedWork = null;
