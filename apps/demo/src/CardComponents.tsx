@@ -183,7 +183,8 @@ export function WideCard({ card }: { card: DemoCard }) {
     );
 }
 
-export function ImageCard({ card }: { card: DemoCard }) {    return (
+export function ImageCard({ card }: { card: DemoCard }) {
+    return (
         <div
             className={`relative rounded-2xl bg-gradient-to-br ${card.gradient} flex flex-col justify-end p-5 overflow-hidden`}
             style={{ height: card.height ?? 240 }}

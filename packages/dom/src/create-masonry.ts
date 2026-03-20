@@ -179,7 +179,9 @@ export function createMasonry(
           const layoutResult = shortestColumnLayout(
             measuredItems.map((item) => {
               const rawSpan = item.element.dataset["masonrySpan"];
-              const span = rawSpan ? Math.max(1, parseInt(rawSpan, 10) || 1) : 1;
+              const span = rawSpan
+                ? Math.max(1, parseInt(rawSpan, 10) || 1)
+                : 1;
               return {
                 index: item.index,
                 width: columnWidth,

@@ -69,8 +69,8 @@ function SegmentButton({
         <button
             onClick={onClick}
             className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all cursor-pointer ${active
-                    ? "bg-violet-600 text-white shadow-md shadow-violet-900/50"
-                    : "bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700"
+                ? "bg-violet-600 text-white shadow-md shadow-violet-900/50"
+                : "bg-gray-800 text-gray-400 hover:text-white hover:bg-gray-700"
                 }`}
         >
             {children}

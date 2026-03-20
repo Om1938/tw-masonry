@@ -27,7 +27,9 @@ const defaultConfig: Required<
   },
 };
 
-export function resolveConfig(partial: Partial<MasonryConfig> = {}): MasonryConfig {
+export function resolveConfig(
+  partial: Partial<MasonryConfig> = {},
+): MasonryConfig {
   return {
     ...defaultConfig,
     ...partial,

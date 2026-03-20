@@ -38,7 +38,10 @@ function getBestStartColumn(columnHeights: number[], span: number): number {
   return bestStart;
 }
 
-export const shortestColumnLayout: LayoutAlgorithm = (items, options): LayoutResult => {
+export const shortestColumnLayout: LayoutAlgorithm = (
+  items,
+  options,
+): LayoutResult => {
   const columns = Math.max(1, options.columns);
   const gap = Math.max(0, options.gap);
   const columnWidth = Math.max(0, options.columnWidth);
